@@ -76,6 +76,36 @@
 
     <p>Whether through web scraping or APIs, understanding these data-gathering techniques empowers you to collect the necessary information for our subsequent analysis.</p>
 
+    <section>
+    <h3>Data Cleaning and Preprocessing (Hypothetical)</h3>
+    <p>
+        In many data science projects, the initial dataset may require cleaning and preprocessing to ensure its suitability for analysis.
+        Common tasks include handling missing values, removing duplicates, and transforming data types.
+    </p>
+    <p class="sub-heading">Example Data Cleaning Code:</p>
+    <pre><code>
+        # Example: Handling missing values
+        df.dropna(inplace=True)
+
+        # Example: Removing duplicates
+        df.drop_duplicates(inplace=True)
+
+        # Example: Transforming data types
+        df['time_of_day'] = pd.to_datetime(df['time_of_day'])
+    </code></pre>
+    <p>
+        For instance, if our Fortnite dataset had contained missing values in the "placement" column, we might need to decide
+        whether to impute these values or exclude corresponding rows from our analysis.
+    </p>
+    <p>
+        Additionally, transforming categorical variables into numerical format or handling outliers are other aspects
+        of preprocessing that can significantly impact the quality of the analysis.
+    </p>
+    <p>
+        Fortunately, in our specific case, the dataset is well-structured, and we don't need to perform any cleaning or preprocessing.
+    </p>
+</section>
+    
     <h2>Data Ethics</h2>
 
     <p>As we delve into the Fortnite data analysis, it's essential to acknowledge the ethical considerations surrounding data collection, analysis, and interpretation. Unintended consequences and biases can arise, potentially leading to misrepresentation. Let's explore key ethical principles and how to mitigate these issues:</p>
@@ -86,142 +116,119 @@
     <p><strong>5. Mitigating Algorithmic Bias:</strong> If employing machine learning algorithms, be vigilant about algorithmic bias. Regularly audit and validate your models to ensure fair and unbiased outcomes. Adjust algorithms if necessary to address any identified biases.</p>
     <p>By embracing these ethical principles, we aim to conduct a responsible and impactful analysis of Fortnite data. Let's move forward with a commitment to integrity and fairness.</p>
 
-    <h2>Data Analysis</h2>
-
-    <p>Now, let's dive into the analysis of Fortnite data using regression. We'll explore the relationship between the time of day and player placement.</p>
-
     <section>
-        <h3>1. Importing Libraries</h3>
-        <p>
-            To kickstart our analysis, let's import the essential libraries that empower our data exploration and modeling.
-        </p>
-        <p class="sub-heading">Library Import Code:</p>
-        <pre><code>
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn import metrics
-import matplotlib.pyplot as plt
-        </code></pre>
-    </section>
+    <h2>Regression Analysis: Distance Traveled vs Accuracy</h2>
 
-    <h3>2. Loading the Dataset</h3>
-    <p>Let's load the Fortnite dataset into a Pandas DataFrame.</p>
-    <pre>
-        <code>
-            # Load the dataset
-            df = pd.read_csv('Fortnite_Statistics.csv')
-        </code>
-    </pre>
+    <h3>1. Introduction</h3>
+    <p>
+        In this analysis, we aim to test the belief that looting up (collecting items and gear) during a Fortnite match
+        leads to better accuracy compared to dropping hot (landing in highly populated areas for early combat).
+        Understanding the impact of looting strategies on accuracy can provide valuable insights for players' decision-making.
+    </p>
 
-    <section>
-        <h3>2. Loading the Dataset</h3>
-        <p>
-            Now, we'll load the Fortnite dataset into a Pandas DataFrame. This step is crucial as it lays the foundation for our subsequent analysis.
-        </p>
-        <p class="sub-heading">Dataset Loading Code:</p>
-        <pre><code>
-            # Load the dataset
-            df = pd.read_csv('Fortnite_Statistics.csv')
-        </code></pre>
-    </section>
+    <h3>2. Variables Selection</h3>
+    <p>
+        We chose "Distance Traveled" as the independent variable (X) to represent the looting strategy. This variable encapsulates
+        the player's movement across the map, providing a proxy for looting behavior. The dependent variable (y) is "Accuracy,"
+        indicating the player's precision in the match.
+    </p>
 
-    <section>
-        <h3>4. Splitting the Data</h3>
-        <p>
-            Now, let's split the data into training and testing sets. This is a crucial step in machine learning to assess how well our model performs on unseen data.
-        </p>
-        <p class="sub-heading">Data Splitting Code:</p>
-        <pre><code>
-            # Split the data into training and testing sets
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-        </code></pre>
-    </section>
-    
-     <section>
-        <h3>5. Creating the Model</h3>
-        <p>
-            In this step, we create a linear regression model. Linear regression is a fundamental algorithm in predictive modeling, and it's suitable for our analysis to understand the relationship between time of day and placement in Fortnite.
-        </p>
-        <p class="sub-heading">Model Creation Code:</p>
-        <pre><code>
-            # Create a linear regression model
-            model = LinearRegression()
-        </code></pre>
-    </section>
+    <h3>3. Code and Analysis</h3>
+<p>
+    Let's utilize Linear Regression to model the relationship between distance traveled and accuracy. The following Python
+    code demonstrates each step of the analysis, from loading the dataset to visualizing results.
+</p>
 
-    <section>
-        <h3>6. Training the Model</h3>
-        <p>
-            Now, let's proceed to train our linear regression model using the training data. This step involves fitting the model to the provided data, allowing it to learn the patterns and relationships.
-        </p>
-        <p class="sub-heading">Model Training Code:</p>
-        <pre><code>
-            # Train the model
-            model.fit(X_train, y_train)
-        </code></pre>
-    </section>
+<!-- Step 3.1: Loading the Dataset -->
+<h4>3.1 Loading the Dataset</h4>
+<p>
+    We start by loading the Fortnite dataset into a Pandas DataFrame. This step is crucial as it sets the foundation for our analysis.
+</p>
+<pre><code>
+# Load the dataset
+df = pd.read_excel('Fortnite Statistics.xlsx')
+</code></pre>
 
-    <section>
-        <h3>7. Making Predictions</h3>
-        <p>
-            Once the model is trained, we use it to make predictions on the test data. This step helps us understand how well the model generalizes to new, unseen data.
-        </p>
-        <p class="sub-heading">Prediction Code:</p>
-        <pre><code>
-            # Make predictions
-            y_pred = model.predict(X_test)
-        </code></pre>
-    </section>
+<!-- Step 3.2: Variables Selection -->
+<h4>3.2 Variables Selection</h4>
+<p>
+    The independent variable (X) chosen is "Distance Traveled," representing the looting strategy. The dependent variable (y) is
+    "Accuracy," indicating the player's precision in the match.
+</p>
+<pre><code>
+# Choose independent and dependent variables
+X = df[['Distance Traveled']]  # Independent variable
+y = df['Accuracy']  # Dependent variable
+</code></pre>
 
-    <section>
-        <h3>8. Model Evaluation</h3>
-        <p>
-            To assess the performance of our regression model, we calculate metrics such as Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE).
-        </p>
-        <p class="sub-heading">Evaluation Code:</p>
-        <pre><code>
-            # Model evaluation
-            mae = metrics.mean_absolute_error(y_test, y_pred)
-            mse = metrics.mean_squared_error(y_test, y_pred)
-            rmse = np.sqrt(mse)
-        </code></pre>
-    </section>
+<!-- Step 3.3: Splitting the Data -->
+<h4>3.3 Splitting the Data</h4>
+<p>
+    We split the data into training and testing sets to assess how well our model performs on unseen data.
+</p>
+<pre><code>
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+</code></pre>
 
-    <section>
-        <h3>9. Visualizing Results</h3>
-        <p>
-            Visualizing the results is crucial for gaining insights. We create a scatter plot with the actual placement values and overlay the regression line predicted by our model.
-        </p>
-        <p class="sub-heading">Visualization Code:</p>
-        <pre><code>
-            # Visualize the results
-            plt.scatter(X_test, y_test, color='black')
-            plt.plot(X_test, y_pred, color='blue', linewidth=3)
-            plt.xlabel('Time of Day')
-            plt.ylabel('Placement')
-            plt.title('Regression Analysis: Time of Day vs Placement')
-            plt.show()
-        </code></pre>
-    </section>
+<!-- Step 3.4: Initialize the Linear Regression Model -->
+<h4>3.4 Initialize the Linear Regression Model</h4>
+<p>
+    We initialize a Linear Regression model, a fundamental algorithm in predictive modeling.
+</p>
+<pre><code>
+# Initialize the linear regression model
+model = LinearRegression()
+</code></pre>
 
-    <section>
-        <h3>10. Printing Results</h3>
-        <p>
-            Finally, we print the results of our model evaluation to provide a concise summary of its performance.
-        </p>
-        <p class="sub-heading">Print Results Code:</p>
-        <pre><code>
-            # Print results
-            print(f'Mean Absolute Error: {mae}')
-            print(f'Mean Squared Error: {mse}')
-            print(f'Root Mean Squared Error: {rmse}')
-        </code></pre>
-    </section>
+<!-- Step 3.5: Training the Model -->
+<h4>3.5 Training the Model</h4>
+<p>
+    The model is trained using the training data, allowing it to learn the patterns and relationships.
+</p>
+<pre><code>
+# Train the model
+model.fit(X_train, y_train)
+</code></pre>
 
-    <img src="regression_analysis.png" alt="Regression Analysis" />
+<!-- Step 3.6: Making Predictions -->
+<h4>3.6 Making Predictions</h4>
+<p>
+    Once trained, we use the model to make predictions on the test data.
+</p>
+<pre><code>
+# Make predictions on the test set
+y_pred = model.predict(X_test)
+</code></pre>
 
-    <p>The code and visualizations above illustrate the process of loading the dataset, selecting variables, splitting the data, creating and training a linear regression model, making predictions, evaluating the model, and visualizing the results.</p>
+<!-- Step 3.7: Evaluate the Model -->
+<h4>3.7 Evaluate the Model</h4>
+<p>
+    We evaluate the model's performance using metrics such as Mean Absolute Error, Mean Squared Error, and Root Mean Squared Error.
+</p>
+<pre><code>
+# Evaluate the model
+print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))
+print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))
+print('Root Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred, squared=False))
+</code></pre>
+
+<!-- Step 3.8: Visualize the Results -->
+<h4>3.8 Visualize the Results</h4>
+<p>
+    The results are visualized using a scatter plot with the actual placement values and a regression line predicted by our model.
+</p>
+<img src="scatter_plot.png" alt="Scatter Plot">
+<pre><code>
+# Visualize the results
+plt.scatter(X_test, y_test, color='black')
+plt.plot(X_test, y_pred, color='blue', linewidth=3)
+plt.xlabel('Distance Traveled')
+plt.ylabel('Accuracy')
+plt.title('Regression Analysis: Distance Traveled vs Accuracy')
+plt.show()
+</code></pre>
+</section>
 
 </body>
 
