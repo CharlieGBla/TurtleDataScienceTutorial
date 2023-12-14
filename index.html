@@ -11,23 +11,35 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
+            line-height: 1.6;
         }
 
-        h2 {
-            text-align: center;
+        h2, h3, h4 {
             color: #333;
         }
 
         p {
             text-align: justify;
             color: #666;
-            line-height: 1.5;
         }
 
         pre {
             background-color: #f0f0f0;
             padding: 10px;
             border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -139,7 +151,6 @@
     code demonstrates each step of the analysis, from loading the dataset to visualizing results.
 </p>
 
-<!-- Step 3.1: Loading the Dataset -->
 <section>
     <h3>3.1 Loading the Dataset</h3>
     <p>
@@ -167,20 +178,19 @@
     </ol>
 </section>
 
-<<section>
-    <h3>3.2 Variables Selection</h3>
-    <p>
-        The independent variable (X) chosen is "Distance Traveled," representing the looting strategy. The dependent variable (y) is
-        "Accuracy," indicating the player's precision in the match.
-    </p>
-    <p class="sub-heading">Variable Selection Code:</p>
-    <pre><code>
-        # Choose independent and dependent variables
-        X = df[['Distance Traveled']]  <!-- Independent variable -->
-        y = df['Accuracy']  <!-- Dependent variable -->
-    </code></pre>
-</section>
-
+    <section>
+        <h3>3.2 Variables Selection</h3>
+        <p>
+            The independent variable (X) chosen is "Distance Traveled," representing the looting strategy. The dependent variable (y) is
+            "Accuracy," indicating the player's precision in the match.
+        </p>
+        <p class="sub-heading">Variable Selection Code:</p>
+        <pre><code>
+            # Choose independent and dependent variables
+            X = df[['Distance Traveled']]  <!-- Independent variable -->
+            y = df['Accuracy']  <!-- Dependent variable -->
+        </code></pre>
+    </section>
 <section>
     <h3>Explanation:</h3>
     <ol>
@@ -252,7 +262,6 @@
     </ol>
 </section>
 
-<!-- Step 3.5: Training the Model -->
 <section>
     <h3>3.5 Training the Model</h3>
     <p>
@@ -277,7 +286,6 @@
     </ol>
 </section>
 
-<!-- Step 3.6: Making Predictions -->
 <section>
     <h3>3.6 Making Predictions</h3>
     <p>
@@ -302,7 +310,6 @@
     </ol>
 </section>
 
-<!-- Step 3.7: Evaluate the Model -->
 <section>
     <h3>3.7 Evaluate the Model</h3>
     <p>
@@ -329,36 +336,44 @@
     </ol>
 </section>
 
-<!-- Step 3.8: Visualize the Results -->
-<section>
-    <h3>3.8 Visualize the Results</h3>
-    <p>
-        The results are visualized using a scatter plot with the actual placement values and a regression line predicted by our model.
-    </p>
-    <img src="scatter_plot.png" alt="Scatter Plot">
-    <p class="sub-heading">Visualization Code:</p>
-    <pre><code>
-        # Visualize the results
-        plt.scatter(X_test, y_test, color='black')
-        plt.plot(X_test, y_pred, color='blue', linewidth=3)
-        plt.xlabel('Distance Traveled')
-        plt.ylabel('Accuracy')
-        plt.title('Regression Analysis: Distance Traveled vs Accuracy')
-        plt.show()
-    </code></pre>
-</section>
+    <section>
+        <h3>3.8 Visualize the Results</h3>
+        <p>
+            The results are visualized using a scatter plot with the actual placement values and a regression line predicted by our model.
+        </p>
+        <img src="scatter_plot.png" alt="Scatter Plot">
+        <p class="sub-heading">Visualization Code:</p>
+        <pre><code>
+            # Visualize the results
+            plt.scatter(X_test, y_test, color='black')
+            plt.plot(X_test, y_pred, color='blue', linewidth=3)
+            plt.xlabel('Distance Traveled')
+            plt.ylabel('Accuracy')
+            plt.title('Regression Analysis: Distance Traveled vs Accuracy')
+            plt.show()
+        </code></pre>
+    </section>
 
-<section>
-    <h3>Explanation:</h3>
-    <ol>
+    <section>
+        <h3>Explanation:</h3>
+        <ol>
         <li>
-            <strong>Scatter Plot:</strong> The scatter plot visually represents the relationship between distance traveled and accuracy. Each point indicates a specific data instance, and the x-axis represents distance traveled while the y-axis represents accuracy.
-        </li>
-        <li>
-            <strong>Regression Line:</strong> The blue line overlaid on the scatter plot is the regression line predicted by our linear regression model. It shows the trend and relationship between the two variables.
-        </li>
-    </ol>
-</section>
+                <strong>Scatter Plot:</strong> The scatter plot visually represents the relationship between distance traveled and accuracy. Each point indicates a specific data instance, and the x-axis represents distance traveled while the y-axis represents accuracy.
+            </li>
+            <li>
+                <strong>Regression Line:</strong> The blue line overlaid on the scatter plot is the regression line predicted by our linear regression model. It shows the trend and relationship between the two variables.
+            </li>
+        </ol>
+    </section>
+
+    <footer>
+        <h3>Citations</h3>
+        <ol>
+            <li>
+                Reynolds, K. (n.d.). Fortnite Statistics Dataset. Retrieved from <a href="https://data.world/kreynol3">data.world</a>
+            </li>
+        </ol>
+    </footer>
 
 </body>
 
